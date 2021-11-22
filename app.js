@@ -1,3 +1,4 @@
+// Store
 const state = {count: 0}
 const store = Redux.createStore(counter, state) //(reducer , state)
 
@@ -10,28 +11,27 @@ function render() {
 store.subscribe(render)
 
 // Reducer
-function counter(currentState, action) {
-  const nextState = {count: currentState.count}
+function counter(state, action) {
+  const nextState = {count: state.count}
 
   switch (action.type) {
     case 'ADD':
-      nextState.count = currentState.count + 1
+      nextState.count = state.count + 1
       return nextState
       break
     case 'MINUS':
-      if (currentState.count <= 0) {
+      if (state.count <= 0) {
         return nextState
       }
-      nextState.count = currentState.count - 1
+      nextState.count = state.count - 1
       return nextState
-
       break
     case 'RESET':
       nextState.count = 0
       return nextState
       break
     default:
-      return currentState
+      return state
   }
 }
 
